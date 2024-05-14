@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
-import { ETCTask, HeaderProps } from "../types/dataTypes";
+import { ETCTask, TaskFormProps } from "../types/dataTypes";
 
 const projectOptions = ["Project Alpha", "Project Beta", "Project Gamma"];
 const taskTypeOptions = ["Documentation", "Meeting", "Testing", "Development"];
 const taskTimeOptions = ["0.5", "1", "1.5", "2"];
 
-const EtcTaskForm: React.FC<HeaderProps> = ({ onToggleForm }) => {
+const EtcTaskForm: React.FC<TaskFormProps> = ({ onToggleForm }) => {
   const [etcFormData, setEtcFormData] = useState<ETCTask>({
     project: "",
     taskType: "",

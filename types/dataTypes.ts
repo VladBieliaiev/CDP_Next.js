@@ -21,4 +21,9 @@ export interface ETCTask {
 
 export interface HeaderProps {
   onToggleForm: () => void;
+  onDateRangeChange: (dates: string[]) => void;
+}
+
+export interface TaskFormProps {
+  onToggleForm: () => void;
 }

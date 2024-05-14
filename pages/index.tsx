@@ -3,21 +3,24 @@ import { Data, DataProps } from "../types/dataTypes";
 import EtcTaskForm from "../components/EtcTaskForm";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
-import SingleTask from "../components/SingleTask";
 
 const Home: React.FC<DataProps> = () => {
   const [showForm, setShowForm] = useState(false);
-  const onToggleForm = () => setShowForm(!showForm);
   const [fetchedData, setFetchedData] = useState<Data[]>([]);
+  const [taskDates, setTaskDates] = useState<string[]>([]);
 
-  const fetchData = async () => {
+  const onToggleForm = () => setShowForm(!showForm);
+
+  const fetchData = async (dates: string[]) => {
     try {
-      const response = await fetch("/api/fetchAllTask");
+      const response = await fetch("/api/fetchTasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dates),
+      });
       const data = await response.json();
       if (data.message == "ETC Task found successfully") {
-        // console.log("ETC Task found successfully");
         setFetchedData(data.task);
-        // console.log("FEtched data : ", fetchedData);
       }
     } catch (error) {
       console.error("Error finding task:", error);
@@ -25,15 +28,14 @@ const Home: React.FC<DataProps> = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, [showForm]);
+    fetchData(taskDates);
+  }, [taskDates]);
 
   return (
     <div>
-      <Header onToggleForm={onToggleForm} />
+      <Header onToggleForm={onToggleForm} onDateRangeChange={setTaskDates} />
       <EtcTable task={fetchedData} />
       {showForm && <EtcTaskForm onToggleForm={onToggleForm} />}
-      <SingleTask task={[]} />
     </div>
   );
 };
