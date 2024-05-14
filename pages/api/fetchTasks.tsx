@@ -1,11 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import clientPromise from "../../lib/mongodb";
 
-// const validateDate = ["2024-05-09", "2024-05-10", "2024-05-11", "2024-05-14"];
-
-// const first = "2024-05-09";
-// const second = "2024-05-14";
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -18,7 +13,6 @@ export default async function handler(
   try {
     const task = await db
       .collection("data")
-      //   .find({ date: { $in: validateDate } })
       .find({ date: { $gte: dateRange[0], $lte: dateRange[1] } })
       .sort({ date: 1 })
       .toArray();
