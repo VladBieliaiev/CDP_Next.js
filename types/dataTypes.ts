@@ -5,6 +5,7 @@ export interface Data {
   time: string;
   description: string;
   date: string;
+  [key: string]: string;
 }
 
 export interface DataProps {

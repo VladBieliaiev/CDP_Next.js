@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { HeaderProps } from "../types/dataTypes";
 
-// interface HeaderProps {
-//   onToggleForm: () => void;
-//   onDateRangeChange: (dates: string[]) => void;
-// }
 const Header: React.FC<HeaderProps> = ({ onToggleForm, onDateRangeChange }) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");

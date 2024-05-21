@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import clientPromise from "../../lib/mongodb";
 
+// const dateRange = ["2024-05-01", "2024-05-31"];
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
